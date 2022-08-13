@@ -30,6 +30,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var provider=Provider.of<MyProviderApp>(context);
+
     return MaterialApp(
       localizationsDelegates: [
         AppLocalizations.delegate,
