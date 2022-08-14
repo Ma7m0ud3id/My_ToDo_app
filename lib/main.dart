@@ -11,6 +11,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'layout/layout.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 void main() async{
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
@@ -24,13 +25,13 @@ void main() async{
 }
 
 class MyApp extends StatelessWidget {
-
+late MyProviderApp provider;
 
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    var provider=Provider.of<MyProviderApp>(context);
-
+     provider=Provider.of<MyProviderApp>(context);
+     //Sherdeprif();
     return MaterialApp(
       localizationsDelegates: [
         AppLocalizations.delegate,
@@ -48,10 +49,22 @@ class MyApp extends StatelessWidget {
         MainScreen.routName:(c)=>MainScreen(),
       },
       initialRoute:MainScreen.routName ,
-      themeMode: ThemeMode.light,
+      themeMode: provider.themeMode,
       darkTheme: MyThemeData.DarkTheme,
       theme:MyThemeData.lightTheme ,
     );
+
+  }
+  void Sherdeprif()async{
+    final prefs = await SharedPreferences.getInstance();
+    String Language = prefs.getString('Language')??'en';
+    provider.changeLanguage(Language);
+    if(prefs.getString('Theme')=='dark'){
+      provider.changeTheme(ThemeMode.dark);
+    }
+    else if (prefs.getString('Theme')=='light'){
+      provider.changeTheme(ThemeMode.light);
+    }
 
   }
 }

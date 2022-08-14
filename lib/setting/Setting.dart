@@ -6,7 +6,7 @@ import 'package:flutter/material.dart';
 import '../shared/my_theme.dart';
 import 'Show_Bottom.dart';
 import 'Show_theme.dart';
-
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 class Setting extends StatefulWidget {
 
 
@@ -24,10 +24,10 @@ class _SettingState extends State<Setting> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
-          Text('Setting', style: Theme
+          Text(AppLocalizations.of(context)!.setting, style: Theme
               .of(context)
               .textTheme
-              .headline4,textAlign: TextAlign.center),
+              .headline2,textAlign: TextAlign.center),
           SizedBox(height: 15,),
           InkWell(
             onTap: () {
@@ -43,7 +43,7 @@ class _SettingState extends State<Setting> {
                         .of(context)
                         .primaryColor)
                 ),
-                child: Text('Language', style: Theme
+                child: Text(AppLocalizations.of(context)!.language, style: Theme
                     .of(context)
                     .textTheme
                     .headline4?.copyWith(color: Color(0xFF5D9CEC)),)),
@@ -63,7 +63,7 @@ class _SettingState extends State<Setting> {
                         .of(context)
                         .primaryColor)
                 ),
-                child: Text('Theme', style: Theme
+                child: Text(AppLocalizations.of(context)!.theme, style: Theme
                     .of(context)
                     .textTheme
                     .headline4?.copyWith(color: Color(0xFF5D9CEC)),)),

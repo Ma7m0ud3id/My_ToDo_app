@@ -2,15 +2,17 @@ import 'package:flutter/material.dart';
 
 import 'package:calendar_timeline/calendar_timeline.dart';
 import 'package:calendar_timeline/calendar_timeline.dart';
+import 'package:provider/provider.dart';
 
 import '../Data_MOdel/Task_Model.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_core/firebase_core.dart';
 
 import '../Data_fireBase/FireBase.dart';
+import '../provid/my_provider.dart';
 import '../shared/my_theme.dart';
 import 'Task_Itims.dart';
-
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 class TaskScreen extends StatefulWidget {
 
 
@@ -20,10 +22,12 @@ class TaskScreen extends StatefulWidget {
 
 class _TaskScreenState extends State<TaskScreen> {
   DateTime selectedDate = DateTime.now();
+
   @override
   Widget build(BuildContext context) {
+    var provider=Provider.of<MyProviderApp>(context);
     return Container(
-      color: MyThemeData.OnprimaryColor,
+      color: provider.ScaffoldColer(),
 
       child: Column(
         children: [
@@ -37,13 +41,13 @@ class _TaskScreenState extends State<TaskScreen> {
               setState(() {});
             },
             leftMargin: 20,
-            monthColor: MyThemeData.BlackColor,//(dark mode change) (if)
-            dayColor: MyThemeData.BlackColor,//(dark mode change) (if)
+            monthColor: provider.reversBottonColer(),//(dark mode change) (if)
+            dayColor: provider.reversBottonColer(),//(dark mode change) (if)
             activeDayColor: Theme.of(context).primaryColor,
-            activeBackgroundDayColor: MyThemeData.WhiteColor,//(dark mode change) (if)
+            activeBackgroundDayColor: provider.BottonColer(),//(dark mode change) (if)
             dotsColor: Theme.of(context).primaryColor,
             selectableDayPredicate: (date) => true,
-            locale: 'en',
+            locale: provider.AppLanguage,
           ),
           Expanded(
               child: StreamBuilder<QuerySnapshot<TaskModel>>(
@@ -54,7 +58,7 @@ class _TaskScreenState extends State<TaskScreen> {
                       child: CircularProgressIndicator(),
                     );
                   } else if (snapshot.hasError) {
-                    return Text('Something went wrong');
+                    return Text(AppLocalizations.of(context)!.somethingwentwrong);
                   }
                   List<TaskModel> tasks = snapshot.data?.docs
                       .map((docSnap) => docSnap.data())

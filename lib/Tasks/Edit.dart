@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import '../Data_MOdel/Task_Model.dart';
@@ -6,15 +7,15 @@ import '../Data_fireBase/FireBase.dart';
 import '../provid/my_provider.dart';
 import '../shared/components/components.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-
-class AddTaskBottomSheet extends StatefulWidget {
-
-
+class Edit extends StatefulWidget {
+static const String routName='Edit';
+String id;
+Edit(this.id);
   @override
-  State<AddTaskBottomSheet> createState() => _AddTaskBottomSheetState();
+  State<Edit> createState() => _EditState();
 }
 
-class _AddTaskBottomSheetState extends State<AddTaskBottomSheet> {
+class _EditState extends State<Edit> {
   var formKey = GlobalKey<FormState>();
   var selectedDate = DateTime.now();
   String title = '';
@@ -33,7 +34,7 @@ class _AddTaskBottomSheetState extends State<AddTaskBottomSheet> {
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
                 Text(
-                    AppLocalizations.of(context)!.addnewtask,
+                    AppLocalizations.of(context)!.edittask,
                     textAlign: TextAlign.center,
                     style: Theme.of(context)
                         .textTheme
@@ -101,13 +102,14 @@ class _AddTaskBottomSheetState extends State<AddTaskBottomSheet> {
                     if (formKey.currentState!.validate()) {
                       // local database /// mobile
                       // remote database  // online
-                      TaskModel tas = TaskModel(
+                      TaskModel tas1 = TaskModel(
                           title: title,
                           description: description,
+                          id: widget.id,
                           datetime: DateUtils.dateOnly(selectedDate)
                               .microsecondsSinceEpoch);
                       showLoading(context, AppLocalizations.of(context)!.loading);
-                      addTaskFromFireBase(tas).then((value) {
+                      EditTaskFromFireStore(tas1).then((value) {
 
                         hideLoadingDialog(context);
                         showMessage(context, AppLocalizations.of(context)!.addedsuccessfully, AppLocalizations.of(context)!.ok, () {
@@ -123,7 +125,7 @@ class _AddTaskBottomSheetState extends State<AddTaskBottomSheet> {
                       });
                     }
                   },
-                  child: Text(AppLocalizations.of(context)!.addtask),
+                  child: Text(AppLocalizations.of(context)!.savechange),
                 ),
               ],
             ),
@@ -133,16 +135,16 @@ class _AddTaskBottomSheetState extends State<AddTaskBottomSheet> {
     );
   }
 
-  void OpenDatePicker() async {
-    var choosenDate = await showDatePicker(
-        context: context,
-        initialDate: selectedDate,
-        firstDate: DateTime.now(),
-        lastDate: DateTime.now().add(Duration(days: 365)));
+void OpenDatePicker() async {
+  var choosenDate = await showDatePicker(
+      context: context,
+      initialDate: selectedDate,
+      firstDate: DateTime.now(),
+      lastDate: DateTime.now().add(Duration(days: 365)));
 
-    if (choosenDate != null) {
-      selectedDate = choosenDate;
-      setState(() {});
-    }
+  if (choosenDate != null) {
+    selectedDate = choosenDate;
+    setState(() {});
   }
+}
 }

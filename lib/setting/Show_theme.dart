@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import '../provid/my_provider.dart';
-
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 class ShowBottonTheme extends StatefulWidget {
 
 
@@ -32,7 +32,7 @@ class _ShowBottonThemeState extends State<ShowBottonTheme> {
                       .of(context)
                       .primaryColor)
               ),
-              child: Text('Light Mode', style: Theme
+              child: Text(AppLocalizations.of(context)!.lightmode, style: Theme
                   .of(context)
                   .textTheme
                   .headline4,)),
@@ -53,7 +53,7 @@ class _ShowBottonThemeState extends State<ShowBottonTheme> {
                       .of(context)
                       .primaryColor)
               ),
-              child: Text('Dark Mode', style: Theme
+              child: Text(AppLocalizations.of(context)!.darkmode, style: Theme
                   .of(context)
                   .textTheme
                   .headline4,)),
