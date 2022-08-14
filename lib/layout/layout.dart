@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import '../Tasks/Add_Task.dart';
 import '../Tasks/task.dart';
+import '../provid/my_provider.dart';
 import '../setting/Setting.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:provider/provider.dart';
 class MainScreen extends StatefulWidget {
   static const String routName='kljok';
 
@@ -11,17 +13,19 @@ class MainScreen extends StatefulWidget {
 }
 
 class _MainScreenState extends State<MainScreen> {
+
 int count=0;
 
   @override
   Widget build(BuildContext context) {
+    var provider=Provider.of<MyProviderApp>(context);
     return Scaffold(
       appBar: AppBar(
         title: Text(AppLocalizations.of(context)!.todolist,style: Theme.of(context).textTheme.headline1,),
       ),
       bottomNavigationBar: BottomAppBar(
         shape: CircularNotchedRectangle(),
-
+         color: provider.BottonColer(),
         child: BottomNavigationBar(
           backgroundColor: Colors.transparent,
             elevation: 0,
@@ -45,7 +49,7 @@ int count=0;
           },
       shape: StadiumBorder(
       side: BorderSide(
-      color: Colors.white,//change Dark mode (if)
+      color: provider.BottonColer() ,//change Dark mode (if)
       width: 4,
       ))),
       body:tap[count] ,

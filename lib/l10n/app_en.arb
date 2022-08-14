@@ -1,4 +1,28 @@
 {
-    "todolist": "To DO List"
+    "todolist": "To DO List",
+    "setting": "Setting",
+    "delete": "Delete",
+    "addnewtask": "Add New Task",
+    "titel": "Titel",
+    "description": "Description",
+    "selecttime": "Select Time",
+    "pleaseentertasktitle": "Please enter task title",
+    "pleaseentertaskdescription": "Please enter task description",
+    "loading": "Loading...",
+    "addedsuccessfully": "Added Successfully",
+    "ok": "Ok",
+    "errorroute": "error route",
+    "addtask": "Add Task",
+    "somethingwentwrong": "Something went wrong",
+    "cancel": "Cancel",
+    "areyousuretowantdeletethistask": "Are you Sure to want delete this task",
+    "yes": "YES",
+    "lightmode": "Light Mode",
+    "darkmode": "Dark Mode",
+    "language": "Language",
+    "theme": "Theme",
+    "savechange": "Save Change",
+    "edittask": "Edit Task"
+
 
 }

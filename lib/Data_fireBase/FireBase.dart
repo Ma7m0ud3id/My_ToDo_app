@@ -23,12 +23,26 @@ Future<void> addTaskFromFireBase(TaskModel task) {
   task.id = doc.id;
   return doc.set(task);
 }
+// Future<void> EditTaskFromFireBase(TaskModel task) {
+//   var TypeCollection = getTasksFromFireStore();
+//   var doc = TypeCollection.doc();
+//   task.id = doc.id;
+//   return doc.update(task.toJson());
+// }
 
 Future<void> deleteTaskFromFireStore(TaskModel task) {
   // var deletedTask =getTasksFromFireStore();
   // deletedTask.doc(task.id).delete();
   return getTasksFromFireStore().doc(task.id).delete();
 }
+Future<void> EditTaskFromFireStore(TaskModel task) {
+  var TypeCollection = getTasksFromFireStore();
+  //var doc = TypeCollection.doc();
+ // task.id = doc.id;
+  //TypeCollection.doc(task.id).update(task.toJson());
+  return TypeCollection.doc(task.id).update(task.toJson());
+}
+
 
  Future<QuerySnapshot<TaskModel>> getTasksFromFirebase(DateTime dateTime) {
   var tasks = getTasksFromFireStore();
@@ -37,6 +51,7 @@ Future<void> deleteTaskFromFireStore(TaskModel task) {
           isEqualTo: DateUtils.dateOnly(dateTime).microsecondsSinceEpoch)
       .get();
 }
+
 
 Stream<QuerySnapshot<TaskModel>> getTasksFromFirebaseUseingStream(
     DateTime dateTime) {

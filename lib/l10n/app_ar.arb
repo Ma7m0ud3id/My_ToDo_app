@@ -1,4 +1,27 @@
 {
-    "todolist": "قائمة المهام"
+      "todolist": "قائمة المهام",
+      "setting": "اعدادات",
+      "delete": "مسح",
+      "addtask": "اضافه مهمه جديده",
+      "titel": "عنوان",
+      "description": "وصف",
+      "selecttime": "اختار الوقت",
+      "pleaseentertasktitle": "من فضلك ادخل عنوان",
+      "pleaseentertaskdescription": "من فضلك اادخل وصف",
+      "loading": "تحميل....",
+      "addedsuccessfully": "اضافه ناجحه",
+      "ok": "تم",
+      "errorroute": "خطا",
+      "addtask": "اضافة مهمه",
+      "somethingwentwrong": "حدث خطا",
+      "cancel": "الغاء",
+      "areyousuretowantdeletethistask": "هل انت متاكد من الاضافه",
+      "yes": "نعم",
+      "lightmode": "وضع النهاري",
+      "darkmode": "وضع الليلي",
+      "language": "الغه",
+      "theme": "ثيم",
+      "savechange": "حفظ التغيير",
+      "edittask": "تعديل المهمه"
 
 }
