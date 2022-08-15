@@ -24,6 +24,7 @@ class _EditState extends State<Edit> {
   Widget build(BuildContext context) {
     var provider=Provider.of<MyProviderApp>(context);
     return Container(
+      margin: EdgeInsets.only(bottom:MediaQuery.of(context).viewInsets.bottom),
       color:  provider.ScaffoldColer(),
       child: Padding(
         padding: const EdgeInsets.all(12.0),

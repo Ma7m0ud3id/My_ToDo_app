@@ -28,7 +28,6 @@ class _TaskScreenState extends State<TaskScreen> {
     var provider=Provider.of<MyProviderApp>(context);
     return Container(
       color: provider.ScaffoldColer(),
-
       child: Column(
         children: [
           CalendarTimeline(
