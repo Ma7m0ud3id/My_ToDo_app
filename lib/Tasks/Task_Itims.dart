@@ -69,6 +69,7 @@ class _TaskItemState extends State<TaskItem> {
           BottomSheetEditTask(widget.taskModel.id);
         },
         child: Container(
+
           margin: EdgeInsets.symmetric(vertical: 8, horizontal: 16),
           padding: EdgeInsets.all(8),
           decoration: BoxDecoration(
@@ -143,6 +144,7 @@ class _TaskItemState extends State<TaskItem> {
 
   BottomSheetEditTask( String id) {
     showModalBottomSheet(
+        isScrollControlled: true,
         context: context,
         builder: (context) {
           return Edit(id);

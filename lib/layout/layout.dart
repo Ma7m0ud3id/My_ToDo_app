@@ -59,6 +59,7 @@ int count=0;
   List<Widget> tap=[TaskScreen(),Setting()];
     BottomSheetAddTask(){
    showModalBottomSheet(
+     isScrollControlled: true,
        context: context,
        builder: (context) {
          return AddTaskBottomSheet();
