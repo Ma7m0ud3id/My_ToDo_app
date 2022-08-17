@@ -24,9 +24,19 @@ void main() async{
       child: MyApp()));
 }
 
-class MyApp extends StatelessWidget {
-late MyProviderApp provider;
+class MyApp extends StatefulWidget {
+  @override
+  State<MyApp> createState() => _MyAppState();
+}
 
+class _MyAppState extends State<MyApp> {
+late MyProviderApp provider;
+@override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    WidgetsBinding.instance.addPostFrameCallback((____)=>Sherdeprif() );
+  }
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
@@ -55,6 +65,7 @@ late MyProviderApp provider;
     );
 
   }
+
   void Sherdeprif()async{
     final prefs = await SharedPreferences.getInstance();
     String Language = prefs.getString('Language')??'en';
