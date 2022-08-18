@@ -47,7 +47,9 @@ class _EditState extends State<Edit> {
                   child: Column(
                     children: [
                       TextFormField(
-                        decoration: InputDecoration(labelText: AppLocalizations.of(context)!.titel),
+                        style: TextStyle(color: provider.reversBottonColer()),
+
+                        decoration: InputDecoration(labelText: AppLocalizations.of(context)!.titel,labelStyle:TextStyle(color: provider.reversBottonColer()) ),
                         onChanged: (text) {
                           title = text;
                         },
@@ -59,9 +61,10 @@ class _EditState extends State<Edit> {
                         },
                       ),
                       TextFormField(
+                        style: TextStyle(color: provider.reversBottonColer()),
                         maxLines: 4,
                         minLines: 4,
-                        decoration: InputDecoration(labelText: AppLocalizations.of(context)!.description,),
+                        decoration: InputDecoration(labelText: AppLocalizations.of(context)!.description,labelStyle:TextStyle(color: provider.reversBottonColer())),
                         onChanged: (text) {
                           description = text;
                         },
