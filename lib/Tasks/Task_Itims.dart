@@ -65,80 +65,85 @@ class _TaskItemState extends State<TaskItem> {
         ],
       ),
       
-        child: Container(
+        child: InkWell(
+          onTap: (){
+            BottomSheetEditTask(widget.taskModel.id);
+          },
+          child: Container(
 
-          margin: EdgeInsets.symmetric(vertical: 8, horizontal: 16),
-          padding: EdgeInsets.all(8),
-          decoration: BoxDecoration(
-              color: provider.BottonColer(),
-              borderRadius: BorderRadius.circular(8)),
-          //color of container tasks(dark mode change)
-          child: Row(
-            children: [
-              SizedBox(
-                width: 8,
-              ),
-              Container(
-                height: 50,
-                color:  widget.taskModel.isDone==true?Colors.green:Color(0xFF5D9CEC),
-                width: 4,
-              ),
-              SizedBox(
-                width: 8,
-              ),
-              Expanded(
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        widget.taskModel.title, style: TextStyle(fontSize: 25,
-                        color: widget.taskModel.isDone==true?Colors.green:Color(0xFF5D9CEC),
-                        //Color(0xFF5D9CEC),
-                        fontWeight: FontWeight.w400,),
+            margin: EdgeInsets.symmetric(vertical: 8, horizontal: 16),
+            padding: EdgeInsets.all(8),
+            decoration: BoxDecoration(
+                color: provider.BottonColer(),
+                borderRadius: BorderRadius.circular(8)),
+            //color of container tasks(dark mode change)
+            child: Row(
+              children: [
+                SizedBox(
+                  width: 8,
+                ),
+                Container(
+                  height: 50,
+                  color:  widget.taskModel.isDone==true?Colors.green:Color(0xFF5D9CEC),
+                  width: 4,
+                ),
+                SizedBox(
+                  width: 8,
+                ),
+                Expanded(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          widget.taskModel.title, style: TextStyle(fontSize: 25,
+                          color: widget.taskModel.isDone==true?Colors.green:Color(0xFF5D9CEC),
+                          //Color(0xFF5D9CEC),
+                          fontWeight: FontWeight.w400,),
 
-                      ),
-                      Row(
-                        children: [
-                          // Icon(Icons.access_time,size: 15),
-                          Text(
-                              widget.taskModel.description, style: Theme
-                              .of(context)
-                              .textTheme
-                              .bodyText1?.copyWith(color:widget.taskModel.isDone==true?Colors.green:Color(0xFF5D9CEC) )
+                        ),
+                        Row(
+                          children: [
+                            // Icon(Icons.access_time,size: 15),
+                            Text(
+                                widget.taskModel.description, style: Theme
+                                .of(context)
+                                .textTheme
+                                .bodyText1?.copyWith(color:widget.taskModel.isDone==true?Colors.green:Color(0xFF5D9CEC) )
 
-                          ),
-                        ],
-                      )
+                            ),
+                          ],
+                        )
 
-                    ],
-                  )),
-              ElevatedButton(
-                child: slectedDone(widget.taskModel.isDone),
-                onPressed: (){
-                  if(widget.taskModel.isDone){
-                    widget.taskModel.isDone=false;  //
+                      ],
+                    )),
+                ElevatedButton(
+                  child: slectedDone(widget.taskModel.isDone),
+                  onPressed: (){
+                    if(widget.taskModel.isDone){
+                      widget.taskModel.isDone=false;  //
 
-                  }else{
-                    widget.taskModel.isDone=true;
-                  }
-                  EditTaskFromFireStore(widget.taskModel);
-                  // setState((){});
-                },
-                style: ButtonStyle(
-                    backgroundColor: MaterialStateProperty.all(widget.taskModel.isDone==true?Colors.transparent:Colors.blue),
-                    padding: MaterialStateProperty.all(EdgeInsets.all(7)),
-                    textStyle: MaterialStateProperty.all(TextStyle(fontSize: 40))),
-              ),
-              SizedBox(
-                width: 8,
-              ),
+                    }else{
+                      widget.taskModel.isDone=true;
+                    }
+                    EditTaskFromFireStore(widget.taskModel);
+                    // setState((){});
+                  },
+                  style: ButtonStyle(
+                      backgroundColor: MaterialStateProperty.all(widget.taskModel.isDone==true?Colors.transparent:Colors.blue),
+                      padding: MaterialStateProperty.all(EdgeInsets.all(7)),
+                      textStyle: MaterialStateProperty.all(TextStyle(fontSize: 40))),
+                ),
+                SizedBox(
+                  width: 8,
+                ),
 
-            ],
-          ),
+              ],
+            ),
 
 
-        
+
       ),
+        ),
     );
   }
 
