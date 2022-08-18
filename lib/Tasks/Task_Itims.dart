@@ -64,10 +64,7 @@ class _TaskItemState extends State<TaskItem> {
           ),
         ],
       ),
-      child: InkWell(
-        onTap: (){
-          BottomSheetEditTask(widget.taskModel.id);
-        },
+      
         child: Container(
 
           margin: EdgeInsets.symmetric(vertical: 8, horizontal: 16),
@@ -83,7 +80,7 @@ class _TaskItemState extends State<TaskItem> {
               ),
               Container(
                 height: 50,
-                color: Color(0xFF5D9CEC),
+                color:  widget.taskModel.isDone==true?Colors.green:Color(0xFF5D9CEC),
                 width: 4,
               ),
               SizedBox(
@@ -95,7 +92,8 @@ class _TaskItemState extends State<TaskItem> {
                     children: [
                       Text(
                         widget.taskModel.title, style: TextStyle(fontSize: 25,
-                        color: Color(0xFF5D9CEC),
+                        color: widget.taskModel.isDone==true?Colors.green:Color(0xFF5D9CEC),
+                        //Color(0xFF5D9CEC),
                         fontWeight: FontWeight.w400,),
 
                       ),
@@ -106,7 +104,7 @@ class _TaskItemState extends State<TaskItem> {
                               widget.taskModel.description, style: Theme
                               .of(context)
                               .textTheme
-                              .bodyText1
+                              .bodyText1?.copyWith(color:widget.taskModel.isDone==true?Colors.green:Color(0xFF5D9CEC) )
 
                           ),
                         ],
@@ -114,22 +112,32 @@ class _TaskItemState extends State<TaskItem> {
 
                     ],
                   )),
-              Container(
-                padding: EdgeInsets.symmetric(horizontal: 24, vertical: 8),
-                decoration: BoxDecoration(
-                    color: Color(0xFF5D9CEC),
-                    borderRadius: BorderRadius.circular(12)),
-                child: Icon(
-                  Icons.check,
-                  color: Colors.white,
-                  size: 25,
-                ),
-              )
+              ElevatedButton(
+                child: slectedDone(widget.taskModel.isDone),
+                onPressed: (){
+                  if(widget.taskModel.isDone){
+                    widget.taskModel.isDone=false;  //
+
+                  }else{
+                    widget.taskModel.isDone=true;
+                  }
+                  EditTaskFromFireStore(widget.taskModel);
+                  // setState((){});
+                },
+                style: ButtonStyle(
+                    backgroundColor: MaterialStateProperty.all(widget.taskModel.isDone==true?Colors.transparent:Colors.blue),
+                    padding: MaterialStateProperty.all(EdgeInsets.all(7)),
+                    textStyle: MaterialStateProperty.all(TextStyle(fontSize: 40))),
+              ),
+              SizedBox(
+                width: 8,
+              ),
+
             ],
           ),
 
 
-        ),
+        
       ),
     );
   }
@@ -150,4 +158,12 @@ class _TaskItemState extends State<TaskItem> {
           return Edit(id);
         });
   }
+  Widget slectedDone(bool done){
+    if(done){
+      return Text('Done!',style: TextStyle(color: Colors.green,fontWeight: FontWeight.bold,fontSize: 25 ),);
+    }else{
+      return Icon(Icons.done);
+    }
+  }
 }
+//Icon(Icons.check),
