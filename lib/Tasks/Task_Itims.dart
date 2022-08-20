@@ -9,7 +9,7 @@ import '../Data_MOdel/Task_Model.dart';
 import '../Data_fireBase/FireBase.dart';
 import '../provid/my_provider.dart';
 import '../shared/components/components.dart';
-import '../shared/my_theme.dart';
+import '../shared/styles/my_theme.dart';
 
 
 class TaskItem extends StatefulWidget {

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:my_todo_app/shared/my_theme.dart';
+import 'package:my_todo_app/shared/styles/my_theme.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class MyProviderApp extends ChangeNotifier {
